@@ -42,7 +42,8 @@ if (isset($_SESSION['taikhoan'])) {
                 <div class="header-center">
                     <div class="header-search header-search-extended header-search-visible d-none d-lg-block">
                         <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                        <form action="./timkiem.php" method="get">
+                        <!-- <form action="./timkiem.php" method="get"> -->
+                        <form action="" id="form" name="form" method="get">
                             <div class="header-search-wrapper search-wrapper-wide">
                                 <label for="tim" class="sr-only">Search</label>
                                 <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
@@ -290,3 +291,19 @@ if (isset($_SESSION['taikhoan'])) {
 <?php
 }
 ?>
+<script>
+    $( 'form' ).submit(function ( e ) {
+    var data, xhr;
+
+    data = new FormData();
+    data.append( '#tim');
+
+    xhr = new XMLHttpRequest();
+
+    xhr.open( 'POST', 'http://hacheck.tel.fer.hr/xml.pl', true );
+    xhr.onreadystatechange = function ( response ) {};
+    xhr.send( data );
+
+    e.preventDefault();
+});
+</script>

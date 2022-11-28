@@ -34,8 +34,10 @@ def index():
         query = fe.extract(img)
         dists = np.linalg.norm(features-query, axis=1)  # L2 distances to features
         ids = np.argsort(dists)[:30]  # Top 30 results
+        
+        
         scores = [(dists[id], img_paths[id]) for id in ids]
-       
+        # scores [0,1]
        
         return render_template('index.html',
                                query_path=uploaded_img_path,
@@ -48,3 +50,19 @@ def index():
 
 if __name__=="__main__":
     app.run("0.0.0.0")
+
+
+# $( 'form' ).submit(function ( e ) {
+#     var data, xhr;
+
+#     data = new FormData();
+#     data.append( 'file', $( '#file' )[0].files[0] );
+
+#     xhr = new XMLHttpRequest();
+
+#     xhr.open( 'POST', 'http://hacheck.tel.fer.hr/xml.pl', true );
+#     xhr.onreadystatechange = function ( response ) {};
+#     xhr.send( data );
+
+#     e.preventDefault();
+# });
